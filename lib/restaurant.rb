@@ -24,8 +24,8 @@ class Restaurant
   end
 
   def process_order(order)
-    orders.delete(order)
     order.send_confirmation
+    orders.delete(order)
   end
 
 end
