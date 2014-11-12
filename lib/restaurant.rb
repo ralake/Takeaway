@@ -24,8 +24,12 @@ class Restaurant
   end
 
   def process_order(order)
-    order.send_confirmation
+    send_message(order)
     orders.delete(order)
+  end
+
+  def send_message(order)
+    # Add code once figured out twilio
   end
 
 end

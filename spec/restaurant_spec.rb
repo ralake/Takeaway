@@ -31,7 +31,6 @@ describe Restaurant do
   end
 
   it 'can process an order' do
-    allow(first_order).to receive(:send_confirmation)
     the_exotic_viscera_emporium.receive_order(first_order)
     the_exotic_viscera_emporium.process_order(first_order)
     expect(the_exotic_viscera_emporium.orders).to eq([])
