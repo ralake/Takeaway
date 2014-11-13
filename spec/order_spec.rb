@@ -3,6 +3,7 @@ require './lib/order'
 describe Order do
 
   let(:order) { Order.new }
+  let(:the_exotic_viscera_emporium) { double :Restaurant }
   let(:menu) { double :Menu }
   let(:goats_ears) { double :Dish, :price => 12 }
   let(:bat_claws) { double :Dish, :price => 10 }
@@ -26,6 +27,12 @@ describe Order do
   it 'shows a total price for the order' do
     order.add_item(bat_claws)
     expect(order.total_cost).to eq(22)
+  end
+
+  it 'can be sent to the restaurant' do
+    allow(the_exotic_viscera_emporium).to receive(:receive_order)
+    order.send_order(the_exotic_viscera_emporium)
+    expect(order.items).to eq([])
   end
 
 end

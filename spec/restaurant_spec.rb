@@ -36,4 +36,7 @@ describe Restaurant do
     expect(the_exotic_viscera_emporium.orders).to eq([])
   end
 
+  # As customer will order by adding dishes to order rather than accessing them from the menu
+  # create a test and method that checks that the order placed contains items that are in the menu
+
 end
