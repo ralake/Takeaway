@@ -18,6 +18,15 @@ describe Order do
     expect(order.items).to eq([goats_ears, bat_claws])
   end
 
+  it 'can add differing quantites of the same dish' do
+    order.add_item(bat_claws, 2)
+    expect(order.items.count).to eq(3)
+  end
+
+  it 'can display information on its items, quantities and prices' do
+    expect(order.details).to eq("1 x goats ears - £12 each\n")
+  end
+
   it 'can have an item removed from it' do
     order.add_item(bat_claws)
     order.remove_item(goats_ears)
