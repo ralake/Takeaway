@@ -1,42 +1,44 @@
 require './lib/restaurant'
+require './lib/message'
 
 describe Restaurant do
 
-  let(:the_exotic_viscera_emporium) { Restaurant.new }
-  let(:menu) { double :Menu }
-  let(:first_order) { double :Order}
+  let(:exotic_viscera) { Restaurant.new }
+  let(:leopard_tonsils) { double :dish }
+  let(:first_menu) { double :Menu, items: [leopard_tonsils] }
+  let(:first_order) { double :order, items: [leopard_tonsils] }
 
   it 'can hold menues' do
-    expect(the_exotic_viscera_emporium.menues).to be_an_instance_of(Array)
+    expect(exotic_viscera.menus).to be_an_instance_of(Array)
   end
 
   it 'knows if it has a menu' do
-    the_exotic_viscera_emporium.add_menu(menu)
-    expect(the_exotic_viscera_emporium.has_menu?).to be true
+    exotic_viscera.add_menu(first_menu)
+    expect(exotic_viscera.has_menu?).to be true
   end
 
   it 'can remove a menu' do
-    the_exotic_viscera_emporium.add_menu(menu)
-    the_exotic_viscera_emporium.remove_menu(menu)
-    expect(the_exotic_viscera_emporium.has_menu?).to be false
+    exotic_viscera.add_menu(first_menu)
+    exotic_viscera.remove_menu(first_menu)
+    expect(exotic_viscera.has_menu?).to be false
   end
 
   it 'knows if it does not have a menu' do
-    expect(the_exotic_viscera_emporium).not_to have_menu
+    expect(exotic_viscera).not_to have_menu
   end
 
-  it 'can receive and order' do
-    the_exotic_viscera_emporium.receive_order(first_order)
-    expect(the_exotic_viscera_emporium.orders).to eq([first_order])
+  it 'can receive an order' do
+    exotic_viscera.add_menu(first_menu)
+    allow(first_menu).to receive(:items)
+    exotic_viscera.receive_order(first_order)
+    expect(exotic_viscera.orders).to eq([first_order])
   end
 
   it 'can process an order' do
-    the_exotic_viscera_emporium.receive_order(first_order)
-    the_exotic_viscera_emporium.process_order(first_order)
-    expect(the_exotic_viscera_emporium.orders).to eq([])
+    allow(first_order).to receive(:details)
+    allow(first_order).to receive(:total_cost)
+    exotic_viscera.process_test_order(first_order)
+    expect(exotic_viscera.orders).to eq([])
   end
-
-  # As customer will order by adding dishes to order rather than accessing them from the menu
-  # create a test and method that checks that the order placed contains items that are in the menu
 
 end

@@ -1,22 +1,26 @@
+require_relative 'message'
+
 class Restaurant
 
-  attr_reader :menues, :orders
+  include Message
+
+  attr_reader :menus, :orders
 
   def initialize
-    @menues = []
+    @menus = []
     @orders = []
   end
 
   def add_menu(menu)
-    menues << menu
+    menus << menu
   end
 
   def remove_menu(menu)
-    menues.delete(menu)
+    menus.delete(menu)
   end
 
   def has_menu?
-    !menues.empty?
+    !menus.empty?
   end
 
   def receive_order(order)
@@ -24,14 +28,13 @@ class Restaurant
   end
 
   def process_order(order)
-    # Check that the dishes in the order are contained in the menu
-    # Check that the total cost in the order corresponds to the total cost of items ordered.
     send_message(order)
     orders.delete(order)
   end
 
-  def send_message(order)
-    # Add code once figured out twilio
+  def process_test_order(order)
+    test_message(order)
+    orders.delete(order)
   end
 
 end

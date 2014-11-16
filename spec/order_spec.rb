@@ -3,10 +3,10 @@ require './lib/order'
 describe Order do
 
   let(:order) { Order.new }
-  let(:the_exotic_viscera_emporium) { double :Restaurant }
+  let(:exotic_viscera) { double :Restaurant }
   let(:menu) { double :Menu }
-  let(:goats_ears) { double :Dish, :price => 12 }
-  let(:bat_claws) { double :Dish, :price => 10 }
+  let(:goats_ears) { double :Dish, name: "goats ears", price: 12 }
+  let(:bat_claws) { double :Dish, name: "bat claws", price: 10 }
 
   before do
     order.add_item(goats_ears)
@@ -30,9 +30,8 @@ describe Order do
   end
 
   it 'can be sent to the restaurant' do
-    allow(the_exotic_viscera_emporium).to receive(:receive_order)
-    order.send_order(the_exotic_viscera_emporium)
-    expect(order.items).to eq([])
+    allow(exotic_viscera).to receive(:receive_order)
+    order.send_order(exotic_viscera)
   end
 
 end
