@@ -1,11 +1,15 @@
-# class Message
+require 'twilio-ruby'
 
-# ENV[account_sid] = 'ACa13a7b363d0129be4a3848e44ce5feea' # Env varaiables?
-# ENV[auth_token] = '[8b3f8f10a5d70f0e60ee7f396e6e8f2c]' # Env varaiables?
- 
-# # set up a client to talk to the Twilio REST API 
-# @client = Twilio::REST::Client.new account_sid, auth_token 
- 
-# @client.account.messages.create({ :from => '+441183241226', })
+class Message
 
-# end
+  def send
+    @client = Twilio::REST::Client.new ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN']
+    @client.account.messages.create(
+            :from => ENV['TWILIO_NUMBER'],
+            :to => ENV['MY_NUMBER'],
+            :body => "Thankyou for ordering! Your order will arrive before #{(Time.now + (60*60)).strftime("%H:%M")}."
+    )
+    "Message sent to customer"
+  end
+
+end

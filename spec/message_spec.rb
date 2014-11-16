@@ -1,11 +1,14 @@
-# require './lib/message'
+require './lib/message'
 
-# describe Message do
+describe Message do
 
-#   it 'can compose a confirmation message to send to the customer' do
-#   end
+  let(:message) { double :Message }
+  let(:first_order) { double :Order }
 
-#   it 'can send a confirmation message' do
-#   end
-
-# end
+  
+  it 'can compose a confirmation message' do
+    expect(message).to receive(:send).and_return("Message sent to customer")
+    message.send
+  end
+  
+end
