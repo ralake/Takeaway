@@ -15,10 +15,6 @@ class Order
     items.delete(dish)
   end
 
-  def send_order(restaurant)
-    restaurant.receive_order(self)
-  end
-
   def details
     items.uniq.each { |dish| order_lines << "#{items.count(dish)} x #{dish.name} - £#{dish.price} each\n" }
     order_lines

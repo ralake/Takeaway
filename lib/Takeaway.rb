@@ -3,5 +3,5 @@ require './order'
 require './message'
 require './restaurant'
 require './menu'
-
+require './customer'
 

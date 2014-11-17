@@ -38,9 +38,4 @@ describe Order do
     expect(order.total_cost).to eq(22)
   end
 
-  it 'can be sent to the restaurant' do
-    allow(exotic_viscera).to receive(:receive_order)
-    order.send_order(exotic_viscera)
-  end
-
 end
