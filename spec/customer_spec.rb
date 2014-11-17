@@ -11,9 +11,18 @@ describe Customer do
     expect(rich.name).to eq("Rich")
   end
 
+  it 'should have a payment account' do
+    expect(rich.account).to eq(0)
+  end
+
+  it 'should be able to add to its account' do
+    rich.add_to_account(20)
+    expect(rich.account).to eq(20)
+  end
+
   it 'should be able to send an order to a restaurant' do
     expect(exotic_viscera).to receive(:receive_order)
     rich.submit_order(richs_order, exotic_viscera)
   end
-
+  
 end

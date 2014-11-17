@@ -43,8 +43,4 @@ describe Restaurant do
     expect(exotic_viscera.orders).to eq([])
   end
 
-  xit "will not accept an order containing items that aren't on the menu" do
-    expect { exotic_viscera.receive_order(second_order) }.to raise_error("Some items in this order are not on the menu. Please re-order")
-  end
-
 end
