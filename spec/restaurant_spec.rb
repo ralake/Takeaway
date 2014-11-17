@@ -5,8 +5,10 @@ describe Restaurant do
 
   let(:exotic_viscera) { Restaurant.new }
   let(:leopard_tonsils) { double :dish }
+  let(:seagull_cheeks) { double :dish }
   let(:first_menu) { double :Menu, items: [leopard_tonsils] }
   let(:first_order) { double :order, items: [leopard_tonsils] }
+  let(:second_order) { double :order, items: [seagull_cheeks]}
 
   it 'can hold menues' do
     expect(exotic_viscera.menus).to be_an_instance_of(Array)
@@ -39,6 +41,10 @@ describe Restaurant do
     allow(first_order).to receive(:total_cost)
     exotic_viscera.process_test_order(first_order)
     expect(exotic_viscera.orders).to eq([])
+  end
+
+  xit "will not accept an order containing items that aren't on the menu" do
+    expect { exotic_viscera.receive_order(second_order) }.to raise_error("Some items in this order are not on the menu. Please re-order")
   end
 
 end
