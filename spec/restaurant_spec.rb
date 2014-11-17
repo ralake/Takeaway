@@ -7,7 +7,7 @@ describe Restaurant do
   let(:leopard_tonsils) { double :dish }
   let(:seagull_cheeks) { double :dish }
   let(:first_menu) { double :Menu, items: [leopard_tonsils] }
-  let(:first_order) { double :order, items: [leopard_tonsils] }
+  let(:first_order) { double :order, items: [leopard_tonsils], total_cost: 9 }
   let(:second_order) { double :order, items: [seagull_cheeks]}
 
   it 'can hold menues' do
@@ -32,8 +32,17 @@ describe Restaurant do
   it 'can receive an order' do
     exotic_viscera.add_menu(first_menu)
     allow(first_menu).to receive(:items)
-    exotic_viscera.receive_order(first_order)
+    exotic_viscera.receive_order(first_order, 9)
     expect(exotic_viscera.orders).to eq([first_order])
+  end
+
+  it 'has an account set up to receive payment when initialized' do
+    expect(exotic_viscera.account).to eq(0)
+  end
+
+  it 'can receive payment for an order' do
+    exotic_viscera.receive_payment(8)
+    expect(exotic_viscera.account).to eq(8)
   end
 
   it 'can process an order' do

@@ -1,28 +1,28 @@
 class Order
 
-  attr_reader :items, :order_lines
+  attr_reader :dishes, :order_lines
 
   def initialize
-    @items = []
+    @dishes = []
     @order_lines = String.new
   end
 
-  def add_item(dish, quantity = 1)
-    quantity.times { items << dish }
+  def add_dish(dish)
+    dishes << dish
   end
 
-  def remove_item(dish)
-    items.delete(dish)
+  def remove_dish(dish)
+    dishes.delete(dish)
   end
 
   def details
-    items.uniq.each { |dish| order_lines << "#{items.count(dish)} x #{dish.name} - £#{dish.price} each\n" }
+    dishes.uniq.each { |dish| order_lines << "#{dishes.count(dish)} x #{dish.name} - £#{dish.price} each\n" }
     order_lines
   end
 
   def total_cost
     total = 0
-    items.each { |item| total = item.price + total }
+    dishes.each { |item| total = item.price + total }
     total
   end
 
