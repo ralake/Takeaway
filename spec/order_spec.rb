@@ -2,10 +2,11 @@ require './lib/order'
 
 describe Order do
 
-  let(:order) { Order.new }
+  let(:order)          { Order.new }
   let(:exotic_viscera) { double :Restaurant }
-  let(:goats_ears) { double :Dish, name: "goats ears", price: 12 }
-  let(:bat_claws) { double :Dish, name: "bat claws", price: 10 }
+  let(:menu)           { double :Menu, dishes: [goats_ears] }
+  let(:goats_ears)     { double :Dish, name: "goats ears", price: 12 }
+  let(:bat_claws)      { double :Dish, name: "bat claws", price: 10 }
 
   before do
     order.add_dish(goats_ears)
@@ -30,5 +31,5 @@ describe Order do
     order.add_dish(bat_claws)
     expect(order.total_cost).to eq(22)
   end
-
+  
 end

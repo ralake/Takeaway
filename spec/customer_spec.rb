@@ -2,11 +2,16 @@ require './lib/customer'
 
 describe Customer do
 
-  let(:rich) { Customer.new("Rich") }
-  let(:first_order) { double :order , dishes: [crispy_eyelids], total_cost: 12 }
+  let(:rich)           { Customer.new("Rich") }
+  let(:first_order)    { double :order , dishes: [crispy_eyelids], total_cost: 12 }
   let(:crispy_eyelids) { double :dish, price: 12 }
-  let(:neck_skin) { double :dish }
+  let(:neck_skin)      { double :dish }
   let(:exotic_viscera) { double :restaurant }
+
+  before(:each) do
+    allow(exotic_viscera).to receive(:receive_payment)
+    allow(exotic_viscera).to receive(:receive_order)
+  end
 
   it 'should have a name' do
     expect(rich.name).to eq("Rich")
@@ -33,14 +38,12 @@ describe Customer do
 
   it 'should be able to place an order' do
     rich.add_to_account(20)
-    allow(exotic_viscera).to receive(:receive_payment)
-    expect(exotic_viscera).to receive(:receive_order)
     allow(first_order).to receive(:total_cost).and_return(12)
     rich.place_order(first_order, exotic_viscera, 12)
+    expect(rich.account).to eq(8)
   end
 
   it 'should not be allowed to place an order if the amount sent does not equal the order total' do
-    allow(exotic_viscera).to receive(:receive_order)
     expect { rich.place_order(first_order, exotic_viscera, 10) }.to raise_error("You have sent insufficient payment. Please re-order")
   end
 
