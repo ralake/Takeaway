@@ -20,15 +20,8 @@ class Restaurant
     @account += amount
   end
 
-  def process_order(order)
-    send_message(order)
-    orders.delete(order)
-  end
-
-  private
-
-  def process_test_order(order)
-    test_message(order)
+  def process_order(customer, order)
+    send_message(customer, order)
     orders.delete(order)
   end
 

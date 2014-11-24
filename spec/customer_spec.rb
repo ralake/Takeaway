@@ -2,7 +2,7 @@ require './lib/customer'
 
 describe Customer do
 
-  let(:rich)           { Customer.new("Rich") }
+  let(:rich)           { Customer.new("Rich", 123) }
   let(:first_order)    { double :order , dishes: [crispy_eyelids], total_cost: 12 }
   let(:crispy_eyelids) { double :dish, price: 12 }
   let(:neck_skin)      { double :dish }
@@ -15,6 +15,10 @@ describe Customer do
 
   it 'should have a name' do
     expect(rich.name).to eq("Rich")
+  end
+
+  it 'should have a mobile number' do
+    expect(rich.mobile_number).to eq(123)
   end
 
   it 'should have a payment account set at 0 when initialized' do

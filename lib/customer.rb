@@ -1,9 +1,10 @@
 class Customer
 
-  attr_reader :name, :account
+  attr_reader :name, :account, :mobile_number
 
-  def initialize(name)
+  def initialize(name, number)
     @name = name
+    @mobile_number = number
     @account = 0
   end
 

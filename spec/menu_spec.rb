@@ -4,7 +4,7 @@ describe Menu do
 
   let(:menu)              { Menu.new }
   let(:parrot_brains)     { double :Dish }
-  let(:capybara_eyeballs) { double :Dish, :capybara_eyeballs => 12 }
+  let(:capybara_eyeballs) { double :Dish, price: 12 }
 
   it 'should have a list of its dishes' do
     expect(menu.dishes).to eq([])
