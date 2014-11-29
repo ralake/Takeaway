@@ -23,14 +23,14 @@ A takeaway restaurant will have a menu containing a list of dishes, each with sp
 Classes - customer, dish, menu, restaurant, order.
 
 Customer
-
+--------
 Responsibilities  | Collaborators
 ------------- | -------------
 add dishes to order | dish
 pay for order | order
 
 Dish
-
+----
 Responsibilities  | Collaborators
 ------------- | -------------
 have price | order
@@ -38,14 +38,14 @@ have name | customer
  | menu
 
 Menu
-
+----
 Responsibilities  | Collaborators
 ------------- | -------------
 holds dishes | dish
  | customer
 
 Restaurant
-
+----------
 Responsibilities  | Collaborators
 ------------- | -------------
 receive order  | customer
@@ -53,7 +53,7 @@ send message  | order
  | message
 
 Order
-
+-----
 Responsibilities  | Collaborators
 ------------- | -------------
 holds dishes | restaurant
