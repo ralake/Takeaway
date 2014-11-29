@@ -11,12 +11,10 @@ class Restaurant
     @account = 0
   end
 
-  def receive_order(order, amount)
+  def receive_order(order, customer, amount)
+    raise "You have sent insufficient payment. Please re-order" if amount < order.total_cost 
+    customer.pay(amount)
     orders << order
-    receive_payment(amount)
-  end
-
-  def receive_payment(amount)
     @account += amount
   end
 

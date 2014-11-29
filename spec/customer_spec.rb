@@ -40,15 +40,10 @@ describe Customer do
     rich.remove_dish(crispy_eyelids, first_order)
   end
 
-  it 'should be able to place an order' do
+  it 'should be able to pay for orders' do
     rich.add_to_account(20)
-    allow(first_order).to receive(:total_cost).and_return(12)
-    rich.place_order(first_order, exotic_viscera, 12)
+    rich.pay(12)
     expect(rich.account).to eq(8)
-  end
-
-  it 'should not be allowed to place an order if the amount sent does not equal the order total' do
-    expect { rich.place_order(first_order, exotic_viscera, 10) }.to raise_error("You have sent insufficient payment. Please re-order")
   end
 
 end
