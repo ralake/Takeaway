@@ -59,3 +59,7 @@ Responsibilities  | Collaborators
 holds dishes | restaurant
 has total cost | customer
  | dish
+
+Technologies
+------------
+rspec, twilio API
