@@ -62,4 +62,4 @@ has total cost | customer
 
 Technologies
 ------------
-rspec, twilio API
+rspec, twilio API, twilio-ruby gem
