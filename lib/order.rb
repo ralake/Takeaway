@@ -1,10 +1,9 @@
 class Order
 
-  attr_reader :dishes, :order_lines
+  attr_reader :dishes
 
   def initialize
     @dishes = []
-    @order_lines = String.new
   end
 
   def add_dish(dish)
@@ -16,14 +15,11 @@ class Order
   end
 
   def details
-    dishes.uniq.each { |dish| order_lines << "#{dishes.count(dish)} x #{dish.name} - £#{dish.price} each\n" }
-    order_lines
+    dishes.uniq.map { |dish| "#{dishes.count(dish)} x #{dish.name} - £#{dish.price} each\n" }.join(', ')
   end
 
   def total_cost
-    total = 0
-    dishes.each { |item| total = item.price + total }
-    total
+    dishes.map { |dish| dish.price }.reduce(&:+)
   end
 
 end
